@@ -1,0 +1,16 @@
+<h2><%= @question.name %></h2>
+<p><%= @question.reason %></p>
+ 
+<% @question.answers.by_votes.each do |single_answer| %>
+  <strong>This answer has <%= single_answer.votes %> votes.</strong><br />
+  Like this answer?  <%= button_to "Vote +1", vote_question_answer_path(@question.id, single_answer.id) %>
+  <p><%= single_answer.description %></p>
+  <hr>
+<% end %>
+ 
+<h2>Add Answer</h2>
+ 
+<%= form_for [@question, @question.answers.new]  do |form| %>
+  <%= form.text_field :description %>
+  <%= form.submit %>
+<% end %>

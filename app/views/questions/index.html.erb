@@ -1,0 +1,27 @@
+<div class="hero-unit">
+  <h1>RG! Answers</h1>
+  <p>Got a question?  Get the best answers!</p>
+  <p><%= link_to "Ask a Question", new_question_url, :class => "brn btn-primary btn-large" %></p>
+</div>
+ 
+<table class="table table-striped">
+  <thead>
+    <th>Question</th>
+    <th>Actions</td>
+  </thead>
+  <tbody>
+    <% @questions.each do |single_question| %>
+      <tr>
+        <td>
+          <strong><%= link_to single_question.name, question_path(single_question) %></strong><br />
+          <%= single_question.reason %><br />
+          <strong>Top Answer:</strong> <%= single_question.top_answer %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_question_path(single_question) %>
+          <%= link_to 'Destroy', single_question, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
